@@ -55,8 +55,8 @@ def update(id):
 
 def delete_file(id):
   fh = open(id, "w")
-    fh.write('')
-    fh.close()
+  fh.write('')
+  fh.close()
 
 # handles messaging events
 def messaging_events(payload):
