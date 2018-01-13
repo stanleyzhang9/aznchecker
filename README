@@ -1,0 +1,2 @@
+this is the python server built with flask for a small project to monitor amazon
+prices and notify when a specific item is below a threshhold price.
