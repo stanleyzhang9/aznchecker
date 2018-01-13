@@ -44,7 +44,7 @@ def getNewItems(id):
 # check current price of certain item given url
 def checkPrice(url):
     r = requests.get(url)
-    html_proc = BeautifulSoup(r.text, "html.parser")
+    html_proc = BeautifulSoup(r.text, "lxml")
     span = html_proc.find("span", {"id": "priceblock_ourprice"})
     curr_price = float(span.text[1:])
 
@@ -90,7 +90,10 @@ def send_message(recipient, url):
 # if nonzero read in new URLs/threshold prices
 def start(id):
     while(1):
-        if(os.stat(id).st_size != 0):
+        r = requests.get(baseurl+id)
+        arr = r.text.split("\n")
+        arr = arr[:-1]
+        if(len(arr) != 0):
             getNewItems(id)
         printWatchlist()
         time.sleep(5)
