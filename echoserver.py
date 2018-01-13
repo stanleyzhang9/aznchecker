@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, request
 import json
+import os
 import requests
 import threading
 import price_check
@@ -59,8 +60,7 @@ def update(id):
 
 def delete_file(id):
   fh = open(id, "w")
-  fh.write('')
-  fh.close()
+  os.remove(fh)
 
 # handles messaging events
 def messaging_events(payload):
