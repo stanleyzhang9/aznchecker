@@ -35,6 +35,7 @@ def handle_messages():
       fh.write(x[1]+'\n')
       print(x[0] + '\n' + x[1] + '\n')
       fh.close()
+      print(sender)
       send_message(PAT, sender, 'I have added the item ' + x[0] + ' for the maximum price of ' + x[1])
       # call script with sender
   return "sent"
