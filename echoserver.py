@@ -5,6 +5,7 @@ import requests
 
 app = Flask(__name__)
 
+visited = []
 
 PAT = 'EAAZAIR80GOG0BAMgzM7l6W2PAvWOdee6vQZAe8CKM2kxlB6gPApRB2qGsQTj1YlZAeNTVunZCkdeuzr1pNAlKYI51SVfExZBGm8Tw5CIPTCpZBaXrdoR0D1vyI5ivXMo97GuRBHcs36zdilY9S21ph75JH4d86tzkZCRug7Qbsf8yjJUvJpkhA9'
 
@@ -29,21 +30,22 @@ def handle_messages():
     # write to file to be handled by seperate script
     x = message.decode("utf-8").split(",")
     if (len(x) == 2): 
-      fh = open('new_list', "a")
+      fh = open(sender, "a")
       fh.write(x[0]+'\n')
       fh.write(x[1]+'\n')
       print(x[0] + '\n' + x[1] + '\n')
       fh.close()
       send_message(PAT, sender, 'I have added the item ' + x[0] + ' for the maximum price of ' + x[1])
+      # call script with sender
   return "sent"
 
 # html to be scraped by script
-@app.route('/new_list')
-def update():
-  fh = open('new_list', "a")
+@app.route('/<id>')
+def update(id):
+  fh = open(id, "a")
   fh.write('')
   fh.close()
-  file = open('new_list','r');
+  file = open(id,'r');
   str = ''
   for line in file:
      str += line + '\n'
