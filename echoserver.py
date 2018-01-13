@@ -49,7 +49,7 @@ def update(id):
   file = open(id,'r');
   str = ''
   for line in file:
-     str += line + '\n'
+     str += line
   file.close()
   return str
 
