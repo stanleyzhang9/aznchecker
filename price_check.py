@@ -90,7 +90,7 @@ def send_message(recipient, url):
 # if nonzero read in new URLs/threshold prices
 def start(id):
     while(1):
-        if(os.stat("new_list").st_size != 0):
+        if(os.stat(baseurl+id).st_size != 0):
             getNewItems(id)
         printWatchlist()
         time.sleep(5)
