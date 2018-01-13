@@ -46,6 +46,7 @@ def checkPrice(url):
     r = requests.get(url)
     html_proc = BeautifulSoup(r.text, "lxml")
     span = html_proc.find("span", {"id": "priceblock_ourprice"})
+    print(span.text)
     curr_price = float(span.text[1:])
 
     return curr_price
