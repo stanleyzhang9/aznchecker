@@ -4,6 +4,7 @@ import threading
 import requests
 import os
 import json
+import echoserver
 from bs4 import BeautifulSoup
 
 baseurl = "https://aznchecker.herokuapp.com/"
@@ -38,7 +39,7 @@ def getNewItems(id):
             curr_prices.append(0)
             new_watch_thread = threading.Thread(target=watchItem, args=(url, threshold, id))
             new_watch_thread.start()
-
+    echoserver.delete_file(id)    
 
 # check current price of certain item given url
 def checkPrice(url):

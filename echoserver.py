@@ -2,6 +2,8 @@
 from flask import Flask, request
 import json
 import requests
+import threading
+import price_check
 
 app = Flask(__name__)
 
@@ -37,7 +39,9 @@ def handle_messages():
       fh.close()
       print(sender)
       send_message(PAT, sender, 'I have added the item ' + x[0] + ' for the maximum price of ' + x[1])
-      # call script with sender
+      if sender not in list:
+        list.append(sender)
+        threading.Thread(target=start, args=(id,)).start()     
   return "sent"
 
 # html to be scraped by script
