@@ -53,6 +53,11 @@ def update(id):
   file.close()
   return str
 
+def delete_file(id):
+  fh = open(id, "w")
+    fh.write('')
+    fh.close()
+
 # handles messaging events
 def messaging_events(payload):
   data = json.loads(payload)
