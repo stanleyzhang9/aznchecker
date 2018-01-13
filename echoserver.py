@@ -59,8 +59,7 @@ def update(id):
   return str
 
 def delete_file(id):
-  fh = open(id, "w")
-  os.remove(fh)
+  os.remove(id)
 
 # handles messaging events
 def messaging_events(payload):

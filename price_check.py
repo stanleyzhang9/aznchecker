@@ -44,7 +44,7 @@ def getNewItems(id):
 # check current price of certain item given url
 def checkPrice(url):
     r = requests.get(url)
-    html_proc = BeautifulSoup(r.text, "lxml")
+    html_proc = BeautifulSoup(r.text, "html.parser")
     span = html_proc.find("span", {"id": "priceblock_ourprice"})
     curr_price = float(span.text[1:])
 
