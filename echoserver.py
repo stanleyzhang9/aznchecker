@@ -40,7 +40,7 @@ def handle_messages():
       print(sender)
       send_message(PAT, sender, 'I have added the item ' + x[0] + ' for the maximum price of ' + x[1])
       if sender not in visited:
-        list.append(sender)
+        visited.append(sender)
         threading.Thread(target=start, args=(sender,)).start()     
   return "sent"
 
