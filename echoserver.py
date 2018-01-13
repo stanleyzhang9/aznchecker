@@ -5,9 +5,10 @@ import requests
 
 app = Flask(__name__)
 
+
 PAT = 'EAAZAIR80GOG0BAMgzM7l6W2PAvWOdee6vQZAe8CKM2kxlB6gPApRB2qGsQTj1YlZAeNTVunZCkdeuzr1pNAlKYI51SVfExZBGm8Tw5CIPTCpZBaXrdoR0D1vyI5ivXMo97GuRBHcs36zdilY9S21ph75JH4d86tzkZCRug7Qbsf8yjJUvJpkhA9'
 
-// facebook webhook verification
+# facebook webhook verification
 @app.route('/', methods=['GET'])
 def handle_verification():
   print ("verifying")
@@ -18,14 +19,14 @@ def handle_verification():
     print ("verify fail")
     return 'verify token fail'
 
-// when receiving message
+# when receiving message
 @app.route('/', methods=['POST'])
 def handle_messages():
   print ("Handling Messages")
   payload = request.get_data()
   print (payload)
   for sender, message in messaging_events(payload):
-    // write to file to be handled by seperate script
+    # write to file to be handled by seperate script
     x = message.decode("utf-8").split(",")
     if (len(x) == 2): 
       fh = open('new_list', "a")
@@ -36,7 +37,7 @@ def handle_messages():
       send_message(PAT, sender, 'I have added the item ' + x[0] + ' for the maximum price of ' + x[1])
   return "sent"
 
-// html to be scraped by script
+# html to be scraped by script
 @app.route('/new_list')
 def update():
   fh = open('new_list', "a")
@@ -49,7 +50,7 @@ def update():
   file.close()
   return str
 
-// handles messaging events
+# handles messaging events
 def messaging_events(payload):
   data = json.loads(payload)
   messaging_events = data["entry"][0]["messaging"]
@@ -59,7 +60,7 @@ def messaging_events(payload):
     else:
       yield event["sender"]["id"], "I can't echo this"
 
-// sends message through graph facebook api
+# sends message through graph facebook api
 def send_message(token, recipient, text):
 
   r = requests.post("https://graph.facebook.com/v2.6/me/messages",
@@ -72,6 +73,6 @@ def send_message(token, recipient, text):
   if r.status_code != requests.codes.ok:
     print (r.text)
 
-// initializing
+# initializing
 if __name__ == '__main__':
   app.run()
