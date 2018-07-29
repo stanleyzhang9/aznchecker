@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 visited = []
 
-PAT = '9095405e31fd547d309af9ded5e73dcb'
+PAT = 'EAAZAIR80GOG0BAGOy9OY6ZBLMuw6MZBvoCh06j7DmGCGfHn65ENc2yZBtnEZAKKTZCgnv82ZA3tlTZCiwExb0fZBzAFVjQyzS4tnHwZB9xOBtnaBwUPDtbnNVO8mmw4NDUNEKfj28Y6vmxIy2fUwiaRksbSpavLJN9zUlPgympWCEZAQgvzYwu4gtMu'
 
 # facebook webhook verification
 @app.route('/', methods=['GET'])
